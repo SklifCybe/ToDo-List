@@ -1,6 +1,13 @@
 .list {
     margin-bottom: 30px;
 
+    &__add-button {
+        opacity: 0.4;
+        &:hover {
+            opacity: 1;
+        }
+    }
+
     li {
         display: flex;
         align-items: center;
@@ -24,21 +31,8 @@
         }
 
         .badge {
-            height: 10px;
-            width: 10px;
-            border-radius: 100%;
             position: relative;
             left: 5px;
-
-            &--green {
-                background: #42B883;
-            }
-            &--blue {
-                background: #64C4ED;
-            }
-            &--pink {
-                background: #FFBBCC;
-            }
         }
     }
 }
