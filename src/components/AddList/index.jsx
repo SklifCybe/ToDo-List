@@ -10,7 +10,7 @@ const AddList = ({ colors, onAdd }) => {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [selectedColor, selectColor] = React.useState(colors[0].id);
     const [inputValue, setInputValue] = React.useState('');
-    
+
     const onClose = () => {
         setVisiblePopup(false);
         setInputValue('');
@@ -28,7 +28,7 @@ const AddList = ({ colors, onAdd }) => {
         onAdd({
             "id": Math.random(),
             "name": inputValue,
-            "color": color
+            color,
         });
         onClose();
     };

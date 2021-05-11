@@ -3,14 +3,18 @@
     padding: 0;
     list-style: none;
     outline: none;
-    font-family: "Roboto", -apple-system, system-ui, sans-serif;
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+body {
+    font-family: "Roboto", -apple-system, system-ui, sans-serif;
+}
 
 .todo {
+    display: flex;
     height: 530px;
-    width: 750px;
+    width: 850px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -26,6 +30,11 @@
         height: calc(100% - 120px);
         width: 200px;
         border-right: 1px solid #f1f1f1;
+    }
+
+    &__tasks {
+        flex: 1;
+        padding: 60px;
     }
 }
 

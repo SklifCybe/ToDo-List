@@ -1,6 +1,7 @@
 import React from 'react';
 import List from './components/List';
 import AddList from './components/AddList';
+import Tasks from './components/Tasks';
 
 import DB from './assets/db.json';
 
@@ -25,11 +26,11 @@ const App = () => {
                     name: 'Все задачи',
                 },
                 ]} />
-                <List items={lists} />
-                <AddList onAdd={onAddList} colors={DB.colors}/>
+                <List items={lists} isRemovable onRemove={(item) => console.log(item)} />
+                <AddList onAdd={onAddList} colors={DB.colors} />
             </div>
             <div className="todo__tasks">
-
+                <Tasks />
             </div>
         </div>
     );
