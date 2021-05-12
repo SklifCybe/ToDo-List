@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import List from '../List';
 import Badge from '../Badge';
 
@@ -8,7 +9,8 @@ import './AddList.scss';
 
 const AddList = ({ colors, onAdd }) => {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
-    const [selectedColor, selectColor] = React.useState(colors[0].id);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [selectedColor, selectColor] = React.useState(1);
     const [inputValue, setInputValue] = React.useState('');
 
     const onClose = () => {
@@ -17,20 +19,29 @@ const AddList = ({ colors, onAdd }) => {
         selectColor(colors[0].id);
     };
 
+    React.useEffect(() => {
+        if (Array.isArray(colors)) {
+            selectColor(colors[0].id);
+        }
+    }, [])
+
     const addList = () => {
         if (!inputValue) {
             alert('Введите название списка');
             return;
         }
-
-        const color = colors.filter(c => c.id === selectedColor)[0].name;
-
-        onAdd({
-            "id": Math.random(),
-            "name": inputValue,
-            color,
-        });
-        onClose();
+        setIsLoading(true);
+        axios
+            .post(('http://localhost:3001/lists'), { name: inputValue, colorId: selectedColor })
+            .then(({ data }) => {
+                const color = colors.filter(c => c.id === selectedColor)[0].name;
+                const listObj = {...data, color: {name: color}};
+                onAdd(listObj);
+                onClose();
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     };
 
     return (
@@ -73,7 +84,9 @@ const AddList = ({ colors, onAdd }) => {
                             />
                         )}
                     </div>
-                    <button className="button" onClick={addList}>Добавить</button>
+                    <button className="button" onClick={addList}>
+                        {isLoading ? 'Добавление' : 'Добавить'}
+                    </button>
                 </div>
             }
         </div>

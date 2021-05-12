@@ -1,15 +1,19 @@
 import React from 'react';
-import List from './components/List';
-import AddList from './components/AddList';
-import Tasks from './components/Tasks';
-
-import DB from './assets/db.json';
+import axios from 'axios';
+import { AddList, List, Tasks } from './components';
 
 const App = () => {
-    const [lists, setLists] = React.useState(DB.lists.map(item => {
-        item.color = DB.colors.filter(color => item.colorId === color.id)[0].name;
-        return item;
-    }));
+    const [lists, setLists] = React.useState(null);
+    const [colors, setColors] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks').then(({ data }) => {
+            setLists(data);
+        });
+        axios.get('http://localhost:3001/colors').then(({ data }) => {
+            setColors(data);
+        });
+    }, []);
 
     const onAddList = obj => {
         const newList = [...lists, obj];
@@ -26,11 +30,23 @@ const App = () => {
                     name: 'Все задачи',
                 },
                 ]} />
-                <List items={lists} isRemovable onRemove={(item) => console.log(item)} />
-                <AddList onAdd={onAddList} colors={DB.colors} />
+                {
+                    lists ? (
+                        <List 
+                            items={lists} 
+                            isRemovable 
+                            onRemove= {(id) => { 
+                                const newList = lists.filter((item) => item.id !== id);
+                                setLists(newList);
+                            }} /> ) :
+                        ('Загрузка...')
+                }
+                <AddList onAdd={onAddList} colors={colors} />
             </div>
             <div className="todo__tasks">
-                <Tasks />
+                {
+                    lists && <Tasks list={lists[1]} />
+                }
             </div>
         </div>
     );
