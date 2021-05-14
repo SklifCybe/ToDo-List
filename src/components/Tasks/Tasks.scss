@@ -25,6 +25,38 @@
         }
     }
 
+    &__form {
+        &-new {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            cursor: pointer;
+            opacity: .4;
+            transition: opacity .15s ease-in-out;
+
+            &:hover {
+                opacity: .8;
+            }
+        }
+
+        .button {
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        img {
+            width: 16px;
+            height: 16px;
+            margin-left: 4px;
+        }
+
+        span {
+            margin-left: 19px;
+            font-size: 16px;
+        }
+    }
+
+
     &__items {
         margin-top: 30px;
 
