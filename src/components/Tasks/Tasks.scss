@@ -1,4 +1,8 @@
 .tasks {
+    a {
+        text-decoration: none;
+    }
+
     &__title {
         font-family: Montserrat;
         font-weight: bold;
@@ -116,10 +120,10 @@
 
             
 
-            input {
+            p {
                 margin-left: 15px;
                 border: 0;
-                // font-size: 16px;
+                font-size: 16px;
                 width: 100%;
             }
         }

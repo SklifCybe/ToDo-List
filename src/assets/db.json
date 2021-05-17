@@ -26,8 +26,8 @@
       "colorId": 1
     },
     {
-      "name": "ты лучший в мире",
-      "colorId": 6,
+      "name": "adf",
+      "colorId": 2,
       "id": 6
     }
   ],
@@ -57,22 +57,10 @@
       "completed": false
     },
     {
-      "listId": 1,
-      "text": "ываыв",
-      "completed": false,
-      "id": 5
-    },
-    {
       "listId": 2,
       "text": "123213",
       "completed": false,
       "id": 6
-    },
-    {
-      "listId": 1,
-      "text": "dsf",
-      "completed": false,
-      "id": 7
     }
   ],
   "colors": [
